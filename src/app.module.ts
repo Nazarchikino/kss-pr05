@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
+import { APP_INFO, appInfoFactory } from './app-info.js';
+import { HealthController } from './health.controller.js';
+import { UsersModule } from './users/users.module.js';
 
-/**
- * Кореневий модуль. Завдання практичної роботи № 5:
- * підключіть UsersModule і TicketsModule, контролер HealthController і провайдер APP_INFO (див. SPEC.md).
- */
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [],
+  imports: [UsersModule],
+  controllers: [HealthController],
+  providers: [{ provide: APP_INFO, useFactory: appInfoFactory }],
 })
 export class AppModule {}
